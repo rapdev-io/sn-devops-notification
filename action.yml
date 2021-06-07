@@ -1,18 +1,21 @@
 name: 'ServiceNow DevOps Notification'
 description: 'Send Job Notification to ServiceNow Devops'
 inputs:
-  devops_integration_user_name:
+  devops-integration-user-name:
     description: 'Devops Integration User Name'
     required: true
-  devops_integration_user_pass:
+  devops-integration-user-pass:
     description: 'Devops Integration User Pass'
     required: true
-  instance_name: 
+  instance-name: 
     description: 'ServiceNow Instance Name (e.g.: rapdevio)'
     required: true
   phase:
     description: 'Orchestration Task Phase; started or completed'
     required: true
+  commits:
+    description: 'List of commits that triggered the run'
+    required: false
 runs: 
   using: 'node12'
   main: 'dist/index.js'
