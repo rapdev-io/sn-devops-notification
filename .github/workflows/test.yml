@@ -22,4 +22,5 @@ jobs:
           devops-integration-user-name: ${{ secrets.DEVOPS_INTEGRATION_USER_NAME }}
           devops-integration-user-pass: ${{ secrets.DEVOPS_INTEGRATION_USER_PASS }}
           tool-id: ${{ secrets.TOOL_ID}}
+          context-github: ${{ toJSON(github) }}
           state: "building"
