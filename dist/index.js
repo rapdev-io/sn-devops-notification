@@ -3109,6 +3109,7 @@ const axios = __nccwpck_require__(126);
     const defaultHeaders = {
         'Content-Type': 'application/json'
     }
+    let orchestrationTaskUrl = github.workflow.trim().replace(" ", "+")
     let githubContext = core.getInput('context-github', { required: true })
 
     try {
