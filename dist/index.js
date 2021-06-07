@@ -3116,7 +3116,7 @@ const axios = __nccwpck_require__(126);
     } catch (e) {
         core.setFailed(`exception parsing github context ${e}`);
     }
-    let orchestrationTaskUrl = github.workflow.trim().replace(" ", "+")
+    let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
     const endpoint = `https://${username}.${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`
 
     let notificationPayload;
