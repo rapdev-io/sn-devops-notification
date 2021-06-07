@@ -30,19 +30,20 @@ const axios = require('axios');
             nativeId: githubContext.run_id,
             name: githubContext.workflow,
             id: githubContext.run_id,
-            url: `githubContext.event.repository.html_url}/actions/runs/${github.run_id}`,
+            url: `githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`,
             isMultiBranch: false,
             orchestrationTaskUrl: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`,
-            orchestrationTaskName: `${github.workflow}#${github.job}`,
+            orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`,
             orchestrationTask: {
                 toolId: toolId,
-                orchestrationTaskURL: `${github.event.repository.html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
-                orchestrationTaskName: `${github.workflow}#${github.job}`
+                orchestrationTaskURL: `${githubContext.event.repository.html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
+                orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`
             },
             result: taskState
         }
     } catch (e) {
         core.setFailed(`exception setting notification payload ${e}`)
+        return;
     }
 
     if (commits) {
