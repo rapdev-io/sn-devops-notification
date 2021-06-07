@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  commits: "[{commitId: ${{ github.sha }}}]"
+  commits: '[{"commitId": "${{ github.sha }}" }]'
 
 jobs:
   send-notification:
@@ -26,5 +26,5 @@ jobs:
           devops-integration-user-pass: ${{ secrets.DEVOPS_INTEGRATION_USER_PASS }}
           tool-id: ${{ secrets.TOOL_ID}}
           context-github: ${{ toJSON(github) }}
-          state: "building"
+          state: 'building'
           commits: ${{ env.commits }}
