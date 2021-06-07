@@ -16,6 +16,9 @@ inputs:
   tool-id:
     description: 'Orchestration tool id'
     required: true
+  context-github:
+    description: 'Github context'
+    required: true
   commits:
     description: 'List of commits that triggered the run'
     required: false
