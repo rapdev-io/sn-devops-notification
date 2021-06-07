@@ -7,21 +7,32 @@ const axios = require('axios');
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: true });
     const pass = core.getInput('devops-integration-user-pass', { required: true });
-    const taskState = core.getInput('state', { required: true })
-    const commits = core.getInput('commits')
+    const taskState = core.getInput('state', { required: true });
+    let commits;
+
     const defaultHeaders = {
         'Content-Type': 'application/json'
     }
-     let githubContext = core.getInput('context-github', { required: true })
+
+    if (!!core.getInput('commits')) {
+        try {
+            commits = JSON.parse(core.getInput('commits'));
+        } catch (e) {
+            core.setFailed(`Failed parsing commits string value ${e}`);
+        }
+    }
+
+    let githubContext = core.getInput('context-github', { required: true })
 
     try {
         githubContext = JSON.parse(githubContext);
     } catch (e) {
         core.setFailed(`exception parsing github context ${e}`);
     }
+
     let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
     const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`
-    
+
     let notificationPayload;
     try {
         notificationPayload = {
