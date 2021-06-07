@@ -9,11 +9,12 @@ on:
     
   workflow_dispatch:
 
+env:
+  commits: "[{commitId: ${{ github.sha }}}"]
+
 jobs:
   send-notification:
     runs-on: ubuntu-latest
-    env:
-      commits: "[{commitId: ${{ github.sha }}}"]
     steps:
       - uses: actions/checkout@v2
 
