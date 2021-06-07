@@ -12,15 +12,14 @@ const axios = require('axios');
     const defaultHeaders = {
         'Content-Type': 'application/json'
     }
-    let orchestrationTaskUrl = github.workflow.trim().replace(" ", "+")
-    let githubContext = core.getInput('context-github', { required: true })
+     let githubContext = core.getInput('context-github', { required: true })
 
     try {
         githubContext = JSON.parse(githubContext);
     } catch (e) {
         core.setFailed(`exception parsing github context ${e}`);
     }
-
+    let orchestrationTaskUrl = github.workflow.trim().replace(" ", "+")
     const endpoint = `https://${username}.${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`
 
     let notificationPayload;
