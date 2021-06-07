@@ -10,8 +10,11 @@ inputs:
   instance-name: 
     description: 'ServiceNow Instance Name (e.g.: rapdevio)'
     required: true
-  phase:
-    description: 'Orchestration Task Phase; started or completed'
+  state:
+    description: 'Orchestration Task State'
+    required: true
+  tool-id:
+    description: 'Orchestration tool id'
     required: true
   commits:
     description: 'List of commits that triggered the run'
