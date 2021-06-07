@@ -54,8 +54,8 @@ const axios = require('axios');
 
     try {
         let notificationConfig = { headers: defaultHeaders };
-        notification = await axios.post(endpoint, notificationPayload, notificationConfig)
+        notification = await axios.post(endpoint, JSON.stringify(notificationPayload), notificationConfig)
     } catch (e) {
-        core.setFailed(`exception POSTing notification payload to ServiceNow: ${e}`)
+        core.setFailed(`exception POSTing notification payload to ServiceNow: ${e}\n\n${JSON.stringify(notificationPayload)}`)
     }
 })();
