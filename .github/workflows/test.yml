@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  commits: "[{commitId: ${{ github.sha }}}"]
+  commits: "[{commitId: ${{ github.sha }}}]"
 
 jobs:
   send-notification:
