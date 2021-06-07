@@ -13,6 +13,8 @@ jobs:
   send-notification:
     runs-on: ubuntu-latest
     steps:
+      - env:
+        commits: "[{commitId: ${{ github.sha }}}"]
       - uses: actions/checkout@v2
 
       - name: send servicenow notification
@@ -24,3 +26,4 @@ jobs:
           tool-id: ${{ secrets.TOOL_ID}}
           context-github: ${{ toJSON(github) }}
           state: "building"
+          commits: ${{ env.commits }}
