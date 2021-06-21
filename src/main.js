@@ -52,6 +52,7 @@ const axios = require('axios');
                 orchestrationTaskURL: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
                 orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`
             },
+            upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
             result: taskState
         }
     } catch (e) {

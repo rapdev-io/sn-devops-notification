@@ -3149,6 +3149,7 @@ const axios = __nccwpck_require__(126);
                 orchestrationTaskURL: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
                 orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`
             },
+            upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
             result: taskState
         }
     } catch (e) {
