@@ -33,6 +33,8 @@ const axios = require('axios');
     let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
     const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`
 
+    html_url = githubContext.event.repository.html_url;
+
     let notificationPayload;
     try {
         notificationPayload = {
@@ -43,11 +45,11 @@ const axios = require('axios');
             id: githubContext.run_id,
             url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`,
             isMultiBranch: false,
-            orchestrationTaskUrl: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`,
+            orchestrationTaskUrl: `${html_url}/actions/runs/${githubContext.run_id}`,
             orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`,
             orchestrationTask: {
                 toolId: toolId,
-                orchestrationTaskURL: `${githubContext.event.repository.html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
+                orchestrationTaskURL: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
                 orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`
             },
             result: taskState
