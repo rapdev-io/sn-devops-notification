@@ -22,6 +22,12 @@ const axios = require('axios');
         }
     }
 
+    let upstreamTaskUrl;
+
+    if (!!core.getInput('upstream-task-url')) {
+        upstreamTaskUrl = core.getInput('upstream-task-url');
+    }
+
     let githubContext = core.getInput('context-github', { required: true })
 
     try {
@@ -52,9 +58,14 @@ const axios = require('axios');
                 orchestrationTaskURL: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
                 orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`
             },
-            upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
+            //upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
             result: taskState
         }
+
+        if (upstreamTaskUrl) {
+            notificationPayload.upstreamTaskUrl = upstreamTaskUrl;
+        }
+        
     } catch (e) {
         core.setFailed(`exception setting notification payload ${e}`)
         return;
@@ -72,4 +83,6 @@ const axios = require('axios');
     } catch (e) {
         core.setFailed(`exception POSTing notification payload to ServiceNow: ${e}\n\n${JSON.stringify(notificationPayload)}\n\n${e.toJSON}`)
     }
+
+    core.setOutput('task-execution-url', `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`)
 })();
