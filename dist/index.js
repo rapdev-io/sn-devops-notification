@@ -3119,10 +3119,12 @@ const axios = __nccwpck_require__(126);
         }
     }
 
-    let upstreamTaskUrl;
+    let upstreamTaskUrl = core.getInput('upstream-task-url');
 
-    if (!!core.getInput('upstream-task-url')) {
-        upstreamTaskUrl = core.getInput('upstream-task-url');
+    if (!upstreamTaskUrl) {
+        console.log("No upstream task URL");
+    } else {
+        console.log("Upstream task URL is ", upstreamTaskUrl);
     }
 
     let githubContext = core.getInput('context-github', { required: true })
