@@ -3145,7 +3145,7 @@ const axios = __nccwpck_require__(126);
         notificationPayload = {
             toolid: toolId,
             buildNumber: githubContext.run_number,
-            nativeId: githubContext.run_id,
+            nativeId: githubContext.job.id,
             name: githubContext.workflow,
             id: githubContext.job.id,
             url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`,
