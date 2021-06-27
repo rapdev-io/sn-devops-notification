@@ -48,7 +48,7 @@ const axios = require('axios');
         notificationPayload = {
             toolid: toolId,
             buildNumber: githubContext.run_number,
-            nativeId: githubContext.job.id,
+            nativeId: `${githubContext.run_number}#${githubContext.job}`,
             name: githubContext.workflow,
             id: githubContext.job.id,
             url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`,
