@@ -3147,7 +3147,7 @@ const axios = __nccwpck_require__(126);
             buildNumber: githubContext.run_number,
             nativeId: githubContext.run_id,
             name: githubContext.workflow,
-            id: githubContext.run_id,
+            id: githubContext.job.id,
             url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`,
             isMultiBranch: false,
             orchestrationTaskUrl: `${html_url}/actions/runs/${githubContext.run_id}`,
