@@ -3183,7 +3183,7 @@ const axios = __nccwpck_require__(126);
         core.setFailed(`exception POSTing notification payload to ServiceNow: ${e}\n\n${JSON.stringify(notificationPayload)}\n\n${e.toJSON}`)
     }
 
-    core.setOutput('task-execution-url', `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`)
+    core.setOutput('task-execution-url', `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`)
 })();
 
 /***/ }),
