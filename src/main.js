@@ -49,7 +49,7 @@ const axios = require('axios');
             nativeId: githubContext.run_id,
             name: githubContext.workflow,
             id: githubContext.run_id,
-            url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}`,
+            url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`,
             isMultiBranch: false,
             orchestrationTaskUrl: `${html_url}/actions/runs/${githubContext.run_id}`,
             orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`,

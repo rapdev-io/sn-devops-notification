@@ -22,6 +22,12 @@ inputs:
   commits:
     description: 'List of commits that triggered the run'
     required: false
+  upstream-task-url:
+    description: 'upstream task that triggered execution'
+    required: false
+outputs:
+    task-execution-url:
+      description: 'task execution url'
 runs: 
   using: 'node12'
   main: 'dist/index.js'
