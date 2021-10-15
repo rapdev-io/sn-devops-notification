@@ -27,7 +27,10 @@ inputs:
     required: false
 outputs:
     task-execution-url:
-      description: 'task execution url'
+    description: 'task execution url'
+branding:
+  icon: 'arrow-right-circle'
+  color: 'blue'
 runs: 
   using: 'node12'
   main: 'dist/index.js'
