@@ -64,11 +64,11 @@ const axios = require('axios');
             result: taskState
         }
         
+        console.log(taskState);
         if(taskState == 'building') {
             notificationPayload.startDateTime = new Date().toJSON();
         }
-    
-        else(taskState) {
+        else() {
             notificationPayload.endDateTime = new Date().toJSON();
         }
 
