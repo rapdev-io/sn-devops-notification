@@ -63,6 +63,14 @@ const axios = require('axios');
             //upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
             result: taskState
         }
+        
+        if(taskState == 'building') {
+            notificationPayload.startDateTime = new Date().toJSON();
+        }
+    
+        else(taskState) {
+            notificationPayload.endDateTime = new Date().toJSON();
+        }
 
         if (upstreamTaskUrl) {
             notificationPayload.upstreamTaskUrl = upstreamTaskUrl;
