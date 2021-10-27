@@ -25,7 +25,7 @@ const axios = require('axios');
     let upstreamTaskUrl = core.getInput('upstream-task-url');
 
     if (!upstreamTaskUrl) {
-        console.log("No upstream task URL");
+        console.log("No upstream task URL test jon");
     } else {
         console.log("Upstream task URL is ", upstreamTaskUrl);
     }
