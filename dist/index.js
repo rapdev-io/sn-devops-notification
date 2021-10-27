@@ -3606,7 +3606,7 @@ const axios = __nccwpck_require__(56);
     let upstreamTaskUrl = core.getInput('upstream-task-url');
 
     if (!upstreamTaskUrl) {
-        console.log("No upstream task URL test jon");
+        console.log("No upstream task URL");
     } else {
         console.log("Upstream task URL is ", upstreamTaskUrl);
     }
@@ -3645,7 +3645,6 @@ const axios = __nccwpck_require__(56);
             result: taskState
         }
         
-        console.log('my test' + taskState);
         if(taskState == 'building') {
             notificationPayload.startDateTime = new Date().toJSON();
         }
