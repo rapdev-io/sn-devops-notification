@@ -68,7 +68,7 @@ const axios = require('axios');
         if(taskState == 'building') {
             notificationPayload.startDateTime = new Date().toJSON();
         }
-        else() {
+        else {
             notificationPayload.endDateTime = new Date().toJSON();
         }
 
