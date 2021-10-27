@@ -64,7 +64,7 @@ const axios = require('axios');
             result: taskState
         }
         
-        console.log(taskState);
+        console.log('my test' + taskState);
         if(taskState == 'building') {
             notificationPayload.startDateTime = new Date().toJSON();
         }
