@@ -3645,7 +3645,7 @@ const axios = __nccwpck_require__(56);
             result: taskState
         }
         
-        let timestamp = newDate().toJSON();
+        let timestamp = new Date().toJSON();
         timestamp = timestamp.replace(/t/i,  ' ');
         timestamp = timestamp.replace(/z/i,  '');
         
