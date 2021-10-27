@@ -3645,11 +3645,15 @@ const axios = __nccwpck_require__(56);
             result: taskState
         }
         
+        let timestamp = newDate().toJSON();
+        timestamp = timestamp.replace(/t/i,  ' ');
+        timestamp = timestamp.replace(/z/i,  '');
+        
         if(taskState == 'building') {
-            notificationPayload.startDateTime = new Date().toJSON();
+            notificationPayload.startDateTime = timestamp;
         }
         else {
-            notificationPayload.endDateTime = new Date().toJSON();
+            notificationPayload.endDateTime = timestamp;
         }
 
         if (upstreamTaskUrl) {
