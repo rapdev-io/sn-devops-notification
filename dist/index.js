@@ -3606,7 +3606,7 @@ const axios = __nccwpck_require__(56);
     let upstreamTaskUrl = core.getInput('upstream-task-url');
 
     if (!upstreamTaskUrl) {
-        console.log("No upstream task URL");
+        console.log("No upstream task URL test jon");
     } else {
         console.log("Upstream task URL is ", upstreamTaskUrl);
     }
@@ -3644,6 +3644,14 @@ const axios = __nccwpck_require__(56);
             //upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
             result: taskState
         }
+        
+        console.log('my test' + taskState);
+        if(taskState == 'building') {
+            notificationPayload.startDateTime = new Date().toJSON();
+        }
+        else {
+            notificationPayload.endDateTime = new Date().toJSON();
+        }
 
         if (upstreamTaskUrl) {
             notificationPayload.upstreamTaskUrl = upstreamTaskUrl;
@@ -3669,6 +3677,7 @@ const axios = __nccwpck_require__(56);
 
     core.setOutput('task-execution-url', `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`)
 })();
+
 })();
 
 module.exports = __webpack_exports__;
