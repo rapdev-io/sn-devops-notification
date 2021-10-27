@@ -64,7 +64,7 @@ const axios = require('axios');
             result: taskState
         }
         
-        let timestamp = newDate().toJSON();
+        let timestamp = new Date().toJSON();
         timestamp = timestamp.replace(/t/i,  ' ');
         timestamp = timestamp.replace(/z/i,  '');
         
