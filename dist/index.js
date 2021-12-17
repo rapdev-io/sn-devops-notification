@@ -3619,8 +3619,8 @@ const axios = __nccwpck_require__(56);
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    let worflowEncoded = githubContext.workflow.trim().replace(" ", "%20");
-    let jobEncoded = githubContext.job.trim().replace(" ", "%20");
+    let worflowEncoded = githubContext.workflow.trim().replace(/ /g, "%20");
+    let jobEncoded = githubContext.job.trim().replace(/ /g, "%20");
     const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
 
     html_url = githubContext.event.repository.html_url;
