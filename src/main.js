@@ -56,10 +56,10 @@ const axios = require('axios');
             isMultiBranch: false,
             orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
             orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`,
-            orchestrationTask {
+            orchestrationTask: {
                 orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
                 orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`
-            }
+            },
             result: taskState
         }
         
@@ -79,7 +79,7 @@ const axios = require('axios');
         }
         
     } catch (e) {
-        core.setFailed(`exception setting notification payload ${e}`)
+        core.setFailed(`exception setting notification payload ${e}`);
         return;
     }
 

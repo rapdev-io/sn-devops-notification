@@ -3637,6 +3637,10 @@ const axios = __nccwpck_require__(56);
             isMultiBranch: false,
             orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
             orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`,
+            orchestrationTask: {
+                orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
+                orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`
+            },
             result: taskState
         }
         
@@ -3656,7 +3660,7 @@ const axios = __nccwpck_require__(56);
         }
         
     } catch (e) {
-        core.setFailed(`exception setting notification payload ${e}`)
+        core.setFailed(`exception setting notification payload ${e}`);
         return;
     }
 
