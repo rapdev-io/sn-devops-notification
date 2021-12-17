@@ -57,6 +57,7 @@ const axios = require('axios');
             orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
             orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`,
             orchestrationTask: {
+                toolId: toolId,
                 orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
                 orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`
             },
