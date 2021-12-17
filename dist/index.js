@@ -3619,7 +3619,8 @@ const axios = __nccwpck_require__(56);
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    let orchestrationTaskUrl = githubContext.workflow.trim().replace(" ", "+")
+    let worflowEncoded = githubContext.workflow.trim().replace(" ", "%20")
+    let jobEncoded = githubContext.job.trim().replace(" ", "%20")
     const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`
 
     html_url = githubContext.event.repository.html_url;
@@ -3627,21 +3628,15 @@ const axios = __nccwpck_require__(56);
     let notificationPayload;
     try {
         notificationPayload = {
-            toolid: toolId,
+            toolId: toolId,
             buildNumber: githubContext.run_number,
-            nativeId: `${githubContext.run_number}#${githubContext.job}`,
-            name: githubContext.workflow,
-            id: githubContext.job.id,
-            url: `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`,
+            nativeId: `${githubContext.repository}/${githubContext.workflow}/${githubContext.job} #${githubContext.run_number}`,
+            name: `${githubContext.repository}/${githubContext.workflow}/${githubContext.job} #${githubContext.run_number}`,
+            id: `${githubContext.repository}/${githubContext.workflow}/${githubContext.job} #${githubContext.run_number}`,
+            url: `${html_url}/actions/runs/${githubContext.run_id}?job=${jobEncoded}`,
             isMultiBranch: false,
-            orchestrationTaskUrl: `${html_url}/actions/runs/${githubContext.run_id}`,
-            orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`,
-            orchestrationTask: {
-                toolId: toolId,
-                orchestrationTaskURL: `${html_url}/actions/workflows/${githubContext.workflow}.yml?job=${githubContext.job}`,
-                orchestrationTaskName: `${githubContext.workflow}#${githubContext.job}`
-            },
-            //upstreamTaskUrl: `${html_url}/actions/?query=workflow:\\"${orchestrationTaskUrl}\\"`,
+            orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
+            orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`,
             result: taskState
         }
         
