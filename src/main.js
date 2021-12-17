@@ -12,7 +12,7 @@ const axios = require('axios');
 
     const defaultHeaders = {
         'Content-Type': 'application/json'
-    }
+    };
 
     if (!!core.getInput('commits')) {
         try {
@@ -30,7 +30,7 @@ const axios = require('axios');
         console.log("Upstream task URL is ", upstreamTaskUrl);
     }
 
-    let githubContext = core.getInput('context-github', { required: true })
+    let githubContext = core.getInput('context-github', { required: true });
 
     try {
         githubContext = JSON.parse(githubContext);
@@ -38,9 +38,9 @@ const axios = require('axios');
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    let worflowEncoded = githubContext.workflow.trim().replace(" ", "%20")
-    let jobEncoded = githubContext.job.trim().replace(" ", "%20")
-    const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`
+    let worflowEncoded = githubContext.workflow.trim().replace(" ", "%20");
+    let jobEncoded = githubContext.job.trim().replace(" ", "%20");
+    const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
 
     html_url = githubContext.event.repository.html_url;
 
@@ -62,7 +62,7 @@ const axios = require('axios');
                 orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`
             },
             result: taskState
-        }
+        };
         
         let timestamp = new Date().toJSON();
         timestamp = timestamp.replace(/t/i,  ' ');
@@ -85,17 +85,17 @@ const axios = require('axios');
     }
 
     if (commits) {
-        notificationPayload.commits = commits
+        notificationPayload.commits = commits;
     }
 
     let notification;
 
     try {
         let notificationConfig = { headers: defaultHeaders };
-        notification = await axios.post(endpoint, JSON.stringify(notificationPayload), notificationConfig)
+        notification = await axios.post(endpoint, JSON.stringify(notificationPayload), notificationConfig);
     } catch (e) {
-        core.setFailed(`exception POSTing notification payload to ServiceNow: ${e}\n\n${JSON.stringify(notificationPayload)}\n\n${e.toJSON}`)
+        core.setFailed(`exception POSTing notification payload to ServiceNow: ${e}\n\n${JSON.stringify(notificationPayload)}\n\n${e.toJSON}`);
     }
 
-    core.setOutput('task-execution-url', `${githubContext.event.repository.html_url}/actions/runs/${githubContext.run_id}/${githubContext.job}`)
+    core.setOutput('task-execution-url', `${html_url}/actions/runs/${githubContext.run_id}?job=${jobEncoded}`);
 })();
