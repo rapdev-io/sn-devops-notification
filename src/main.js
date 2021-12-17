@@ -56,6 +56,10 @@ const axios = require('axios');
             isMultiBranch: false,
             orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
             orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`,
+            orchestrationTask {
+                orchestrationTaskURL: `${html_url}/actions/workflows/${worflowEncoded}.yml?job=${jobEncoded}`,
+                orchestrationTaskName: `${githubContext.repository}/${githubContext.workflow}#${githubContext.job}`
+            }
             result: taskState
         }
         
